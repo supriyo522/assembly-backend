@@ -12,4 +12,13 @@ router.post('/submit', async (req, res) => {
   }
 });
 
+router.get('/all', async (req, res) => {
+    try {
+      const forms = await FormData.find().sort({ createdAt: -1 });
+      res.status(200).json(forms);
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to fetch forms' });
+    }
+  });
+  
 module.exports = router;
