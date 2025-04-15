@@ -20,5 +20,26 @@ router.get('/all', async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch forms' });
     }
   });
+
+  // UPDATE
+router.put('/update/:id', async (req, res) => {
+  try {
+    const updated = await FormData.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Update failed' });
+  }
+});
+
+// DELETE
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    await FormData.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Delete failed' });
+  }
+});
+
   
 module.exports = router;
