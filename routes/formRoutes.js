@@ -41,5 +41,16 @@ router.delete('/delete/:id', async (req, res) => {
   }
 });
 
+// DELETE ALL entries route
+router.delete('/delete-all', async (req, res) => {
+  try {
+    await FormData.deleteMany({});
+    res.status(200).json({ message: 'All entries deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Delete all failed' });
+  }
+});
+
+
   
 module.exports = router;
