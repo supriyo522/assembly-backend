@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const formRoutes = require('./routes/formRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ mongoose.connect("mongodb+srv://supriyonag552:PXaye4P5x9uLfH3l@cluster0.zm8sb7n.
   .catch(err => console.error(err));
 
 app.use('/api/form', formRoutes);
+app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
